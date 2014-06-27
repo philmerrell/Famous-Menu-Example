@@ -44,7 +44,6 @@ define(function(require, exports, module) {
 
       var transition = this.options.transition;
       var delay = this.options.staggerDelay;
-      //var stripOffset = this.options.stripOffset;
       var topOffset = this.options.topOffset;
 
       var stripOffset = (currentPosition >= openPosition) ? this.options.stripOffset : currentPosition / openPosition * this.options.stripOffset;

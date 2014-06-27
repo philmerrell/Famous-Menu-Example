@@ -16,7 +16,6 @@ define(function(require, exports, module) {
         _createBody.call(this);
         _createBacking.call(this);
         _setListeners.call(this);
-        //_setFlipperListener.call(this);
     }
 
     ContentView.prototype = Object.create(View.prototype);
@@ -43,8 +42,8 @@ define(function(require, exports, module) {
     function _createHeader() {
       var backgroundSurface = new Surface({
         properties: {
-          backgroundColor: '#ccc',
-          borderBottom: '2px solid #F1632A'
+          backgroundColor: '#798e7b',
+          borderBottom: '3px solid #3a2d1d'
         }
       });
 
@@ -53,11 +52,11 @@ define(function(require, exports, module) {
       });
 
       this.menuIconSurface = new Surface({
-        size: [60, 44],
+        size: [60, 40],
         content: '<i class="fa fa-bars"></i>',
         properties: {
-          fontSize: '30px',
-          color: '#fff'
+          fontSize: '25px',
+          color: '#3a2d1d'
         }
       });
 
@@ -67,9 +66,9 @@ define(function(require, exports, module) {
         align: [0, 0.5]
       });
 
-      var logoSurface = new Surface({
-        size: [44,33],
-        content: '<i class="fa fa-rebel"></i>',
+      var logoSurface = new ImageSurface({
+        size: [40,40],
+        content: 'img/logo.png',
         properties: {
           fontSize: '30px',
           color: 'red'
@@ -96,45 +95,18 @@ define(function(require, exports, module) {
             backgroundColor: 'white',
             fontSize: '45px',
             textAlign: 'center',
-            color: 'red'
+            color: '#424e5a'
           }
       });
 
-        // this.flipper = new Flipper();
-        //
-        // this.rebelSurface = new Surface({
-        //     size : [200, 200],
-        //     content: '<i class="fa fa-rebel"></i>',
-        //     properties: {
-        //       backgroundColor: 'red',
-        //       fontSize: '45px',
-        //       textAlign: 'center',
-        //       color: '#fff'
-        //     }
-        // });
-        //
-        // var empireSurface = new Surface({
-        //     size : [200, 200],
-        //     content: '<i class="fa fa-empire"></i>',
-        //     properties: {
-        //       backgroundColor: 'blue',
-        //       color: '#fff',
-        //       fontSize: '45px',
-        //       textAlign: 'center'
-        //     }
-        // });
 
-        // this.flipper.setFront(this.rebelSurface);
-        // this.flipper.setBack(empireSurface);
+      this.bodySurfaceModifier = new StateModifier({
+        origin: [0.5, 0.5],
+        align: [0.5, 0.5]
+      });
 
-        //this.bodySurface.add(flipper);
+      this.layout.content.add(this.bodySurfaceModifier).add(this.bodySurface);
 
-        this.bodySurfaceModifier = new StateModifier({
-          origin: [0.5, 0.5],
-          align: [0.5, 0.5]
-        });
-
-        this.layout.content.add(this.bodySurfaceModifier).add(this.bodySurface);
     }
 
     function _createBacking() {
@@ -154,15 +126,6 @@ define(function(require, exports, module) {
       }.bind(this));
 
       this.bodySurface.pipe(this._eventOutput);
-    }
-
-    function _setFlipperListener() {
-      var toggle = false;
-      this.rebelSurface.on('click', function(){
-          var angle = toggle ? 0 : Math.PI;
-          this.flipper.setAngle(angle, {curve : 'easeOutBounce', duration : 500});
-          toggle = !toggle;
-      }.bind(this));
     }
 
     module.exports = ContentView;

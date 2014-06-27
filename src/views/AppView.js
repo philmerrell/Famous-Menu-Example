@@ -123,8 +123,7 @@ define(function(require, exports, module) {
 
       /* Since we want the menu to respond to either a flick or a slide,
          we need to set up the conditions to open or close the menu when the
-         user's touch (or mouse) is heard.
-         Taking into account */
+         user's touch (or mouse) is heard. */
       sync.on('end', (function(data) {
 
         var velocity = data.velocity;
@@ -135,7 +134,6 @@ define(function(require, exports, module) {
           if(velocity < -this.options.menu.velThreshold) {
 
             this.hideMenu();
-            //this.menuView.animateMenuItems(0, 0);
 
           } else {
 
@@ -153,7 +151,6 @@ define(function(require, exports, module) {
           } else {
 
             this.hideMenu();
-            //this.menuView.animateMenuItems(0, 0);
 
           }
         }
